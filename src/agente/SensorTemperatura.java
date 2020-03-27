@@ -1,10 +1,10 @@
 package agente;
 
-import ambiente.Espaco;
+import ambiente.Local;
 
 public class SensorTemperatura {
 
-	public int acionaSensor(Espaco espaco) {
+	public int acionaSensor(Local espaco) {
 		return espaco.getTemperatura();
 	}
 	

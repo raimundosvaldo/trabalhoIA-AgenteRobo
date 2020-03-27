@@ -1,6 +1,6 @@
 package ambiente;
 
-public enum TipoEspaco {
+public enum TipoLocal {
 
 	obstaculo, parede, livre;
 

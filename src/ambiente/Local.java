@@ -2,15 +2,15 @@ package ambiente;
 
 import java.util.Random;
 
-public class Espaco {
+public class Local {
 	
-	private TipoEspaco tipoEspaco;
+	private TipoLocal tipoLocal;
 	private int temperatura;
 	
-	public Espaco(TipoEspaco tipo) {
-		this.tipoEspaco = tipo;
+	public Local(TipoLocal tipo) {
+		this.tipoLocal = tipo;
 		
-		if(tipoEspaco == TipoEspaco.livre) {
+		if(tipoLocal == TipoLocal.livre) {
 			Random random = new Random();
 			this.temperatura = (random.nextInt(301))-100;
 		}
@@ -20,8 +20,8 @@ public class Espaco {
 		return this.temperatura;
 	}
 	
-	public TipoEspaco getTipoEspaco() {
-		return this.tipoEspaco;
+	public TipoLocal getTipoLocal() {
+		return this.tipoLocal;
 	}
 	
 }

@@ -1,13 +1,13 @@
 package agente;
 
-import ambiente.Espaco;
-import ambiente.TipoEspaco;
+import ambiente.Local;
+import ambiente.TipoLocal;
 
 public class SensorObstaculos{
 
-	public boolean acionaSensor(Espaco espaco) {
-		if(espaco.getTipoEspaco() != TipoEspaco.obstaculo 
-				& espaco.getTipoEspaco() != TipoEspaco.parede) {
+	public boolean acionaSensor(Local local) {
+		if(local.getTipoLocal() == TipoLocal.obstaculo 
+				|| local.getTipoLocal() == TipoLocal.parede) {
 			return true;
 		}
 		return false;

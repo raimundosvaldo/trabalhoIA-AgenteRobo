@@ -7,26 +7,31 @@ import agente.Robo;
 public class SuperficieDeMarte {
 
 	private int altura, largura;
-	private final Espaco[][] ambiente;
+	private final Local[][] ambiente;
 	private int totalDeObstaculos;
-	private Robo robo;
 
 	public SuperficieDeMarte(int altura, int largura, int totalDeObstaculos) {
 		this.altura = altura;
 		this.largura = largura;
 		this.totalDeObstaculos = totalDeObstaculos;
-		this.ambiente = new Espaco[altura][largura];
-		this.robo = new Robo();
+		this.ambiente = new Local[altura][largura];
 		this.montaAmbiente(totalDeObstaculos);
-		this.posicionaRobo();
 	}
 
 	public int getTotalDeObstaculos() {
 		return this.totalDeObstaculos;
 	}
 
-	public Espaco[][] getAmbiente() {
+	public Local[][] getAmbiente() {
 		return this.ambiente;
+	}
+	
+	public int getAltura() {
+		return this.altura;
+	}
+	
+	public int getLargura() {
+		return this.largura;
 	}
 
 	private void montaAmbiente(int totalDeObstaculos) {
@@ -36,35 +41,21 @@ public class SuperficieDeMarte {
 			int x = random.nextInt(this.altura);
 			int y = random.nextInt(this.largura);
 			if (this.ambiente[x][y] == null && !isParede(x, y)) {
-				this.ambiente[x][y] = new Espaco(TipoEspaco.obstaculo);
+				this.ambiente[x][y] = new Local(TipoLocal.obstaculo);
 				totalDeObstaculos--;
 			}
 		} while (totalDeObstaculos > 0);
 		
-		for (int i = 0; i < this.altura; i++) {
-			for (int j = 0; j < this.largura; j++) {
-				if (isParede(i, j)) {
-					this.ambiente[i][j] = new Espaco(TipoEspaco.parede);
-				} else if (!isObstaculo(i, j)) {
-					this.ambiente[i][j] = new Espaco(TipoEspaco.livre);
+		for (int x = 0; x < this.altura; x++) {
+			for (int y = 0; y < this.largura; y++) {
+				if (isParede(x, y)) {
+					this.ambiente[x][y] = new Local(TipoLocal.parede);
+				} else if (!isObstaculo(x, y)) {
+					this.ambiente[x][y] = new Local(TipoLocal.livre);
 				}
 			}
 		}
 		
-	}
-
-	private void posicionaRobo() {
-		
-		Random random = new Random();
-		int posX;
-		int posY;
-		
-		do {
-			posX = random.nextInt(altura);
-			posY = random.nextInt(largura);
-		} while (!isEspacoLivre(posX, posY));
-		
-		this.robo.setPosicao(posX, posY);
 	}
 
 	private boolean isParede(int x, int y) {
@@ -73,29 +64,33 @@ public class SuperficieDeMarte {
 
 	private boolean isObstaculo(int x, int y) {
 		return this.ambiente[x][y] != null && !isParede(x, y)
-				&& this.ambiente[x][y].getTipoEspaco() == TipoEspaco.obstaculo;
+				&& this.ambiente[x][y].getTipoLocal() == TipoLocal.obstaculo;
 	}
 
-	private boolean isEspacoLivre(int x, int y) {
-		return this.ambiente[x][y] != null && this.ambiente[x][y].getTipoEspaco() == TipoEspaco.livre;
+	public boolean isEspacoLivre(int x, int y) {
+		return this.ambiente[x][y] != null && this.ambiente[x][y].getTipoLocal() == TipoLocal.livre;
 	}
 
-	public void mostraAmbiente() {
-		for (int i = 0; i < this.altura; i++) {
-			for (int j = 0; j < this.largura; j++) {
-				if (isEspacoLivre(i, j)) {
-					if (i == this.robo.getPosicaoX() && j == this.robo.getPosicaoY()) {
-						System.out.print(" & ");
+	public String getEstadoAtualAmbiente(Robo robo) {
+		
+		StringBuilder ambiente = new StringBuilder();
+		
+		for (int x = 0; x < this.altura; x++) {
+			for (int y = 0; y < this.largura; y++) {
+				if (isEspacoLivre(x, y)) {
+					if (x == robo.getPosicaoX() && y == robo.getPosicaoY()) {
+						ambiente.append(" & ");
 					} else {
-						System.out.print(this.ambiente[i][j].getTipoEspaco());
+						ambiente.append(this.ambiente[x][y].getTipoLocal());
 					}
-				} else if (isParede(i, j)) {
-					System.out.print(this.ambiente[i][j].getTipoEspaco());
+				} else if (isParede(x, y)) {
+					ambiente.append(this.ambiente[x][y].getTipoLocal());
 				} else {
-					System.out.print(this.ambiente[i][j].getTipoEspaco());
+					ambiente.append(this.ambiente[x][y].getTipoLocal());
 				}
 			}
-			System.out.println();
+			ambiente.append("\n");
 		}
+		return ambiente.toString();
 	}
 }

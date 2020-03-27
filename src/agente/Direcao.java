@@ -1,7 +1,7 @@
 package agente;
 
-public enum DirecaoRobo {
+public enum Direcao {
 	
 	norte, sul, leste, oeste;
-
+	
 }

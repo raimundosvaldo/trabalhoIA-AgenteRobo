@@ -1,21 +1,21 @@
 package agente;
 
-public class PosicaoXY {
+public class Posicao {
 	
-	private int posX, posY;
+	private int coordX, coordY;
 	private int deslocX, deslocY;
 	
-	public void setPosicao(int x, int y) {
-		this.posX = x;
-		this.posY = y;
+	public void setCoordenada(int x, int y) {
+		this.coordX = x;
+		this.coordY = y;
 	}
 	
-	public int getPosX() {
-		return this.posX;
+	public int getCoordX() {
+		return this.coordX;
 	}
 	
-	public int getPosY() {
-		return this.posY;
+	public int getCoordY() {
+		return this.coordY;
 	}
 	
 	public int getDeslocX() {
@@ -26,15 +26,15 @@ public class PosicaoXY {
 		return this.deslocY;
 	}
 	
-	public int getProximaPosicaoX() {
-		return this.posX + this.deslocX;
+	public int getProxCoordX() {
+		return (this.coordX + this.deslocX);
 	}
 
-	public int getProximaPosicaoY() {
-		return this.posY + this.deslocY;
+	public int getProxCoordY() {
+		return (this.coordY + this.deslocY);
 	}
 	
-	public void setDirecao(DirecaoRobo direcao) {
+	public void setDeslocamento(Direcao direcao) {
 		switch (direcao) {
 		case norte:
 			this.deslocX = 0;
