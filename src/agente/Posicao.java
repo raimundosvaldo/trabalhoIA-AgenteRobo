@@ -5,9 +5,42 @@ public class Posicao {
 	private int coordX, coordY;
 	private int deslocX, deslocY;
 	
+	
+	public Posicao() {
+		
+	}
+	
+	public Posicao(int x, int y) {
+		this.coordX = x;
+		this.coordY = y;
+	}
+	
 	public void setCoordenada(int x, int y) {
 		this.coordX = x;
 		this.coordY = y;
+	}
+	
+	public void setDeslocamento(Direcao direcao) {
+		switch (direcao) {
+		case norte:
+			this.deslocX = 0;
+			this.deslocY = -1;
+			break;
+		case sul:
+			this.deslocX = 0;
+			this.deslocY = 1;
+			break;
+		case oeste:
+			this.deslocX = -1;
+			this.deslocY = 0;
+			break;
+		case leste:
+			this.deslocX = 1;
+			this.deslocY = 0;
+			break;
+		default:
+			break;
+		}
 	}
 	
 	public int getCoordX() {
@@ -32,29 +65,6 @@ public class Posicao {
 
 	public int getProxCoordY() {
 		return (this.coordY + this.deslocY);
-	}
-	
-	public void setDeslocamento(Direcao direcao) {
-		switch (direcao) {
-		case norte:
-			this.deslocX = 0;
-			this.deslocY = -1;
-			break;
-		case sul:
-			this.deslocX = 0;
-			this.deslocY = 1;
-			break;
-		case oeste:
-			this.deslocX = -1;
-			this.deslocY = 0;
-			break;
-		case leste:
-			this.deslocX = 1;
-			this.deslocY = 0;
-			break;
-		default:
-			break;
-		}
 	}
 
 }

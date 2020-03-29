@@ -4,13 +4,13 @@ import java.util.Random;
 
 import agente.Robo;
 
-public class SuperficieDeMarte {
+public class Ambiente {
 
 	private int altura, largura;
 	private final Local[][] ambiente;
 	private int totalDeObstaculos;
 
-	public SuperficieDeMarte(int altura, int largura, int totalDeObstaculos) {
+	public Ambiente(int altura, int largura, int totalDeObstaculos) {
 		this.altura = altura;
 		this.largura = largura;
 		this.totalDeObstaculos = totalDeObstaculos;
@@ -59,7 +59,7 @@ public class SuperficieDeMarte {
 	}
 
 	private boolean isParede(int x, int y) {
-		return x == 0 || y == 0 || x == this.altura - 1 || y == this.largura - 1;
+		return x == 0 || y == 0 || x == this.largura - 1 || y == this.altura - 1;
 	}
 
 	private boolean isObstaculo(int x, int y) {
