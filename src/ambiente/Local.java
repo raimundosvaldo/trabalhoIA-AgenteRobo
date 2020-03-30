@@ -23,5 +23,5 @@ public class Local {
 	public TipoLocal getTipoLocal() {
 		return this.tipoLocal;
 	}
-	
+
 }

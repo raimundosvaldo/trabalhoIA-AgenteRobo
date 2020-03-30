@@ -5,7 +5,6 @@ public class Posicao {
 	private int coordX, coordY;
 	private int deslocX, deslocY;
 	
-	
 	public Posicao() {
 		
 	}
@@ -66,5 +65,4 @@ public class Posicao {
 	public int getProxCoordY() {
 		return (this.coordY + this.deslocY);
 	}
-
 }

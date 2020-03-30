@@ -1,4 +1,4 @@
-package main;
+package principal;
 
 import java.util.Scanner;
 
@@ -36,7 +36,7 @@ public class Main {
 		
 		System.out.println("Pronto... Agora o robô ");
 		while (roboEmMarte.isTrabalhando()) {
-			System.out.println(superficieDeMarte.getEstadoAtualAmbiente(roboEmMarte));
+			System.out.println(superficieDeMarte.getEstadoAtual(roboEmMarte));
 			roboEmMarte.zeraTentativaDeMudarPosicao();
 			roboEmMarte.atua();
 			Thread.sleep(1500);

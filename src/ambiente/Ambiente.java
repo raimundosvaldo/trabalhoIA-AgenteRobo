@@ -34,6 +34,33 @@ public class Ambiente {
 		return this.largura;
 	}
 
+	public String getEstadoAtual(Robo robo) {
+		
+		StringBuilder ambiente = new StringBuilder();
+		
+		for (int x = 0; x < this.altura; x++) {
+			for (int y = 0; y < this.largura; y++) {
+				if (isEspacoLivre(x, y)) {
+					if (x == robo.getPosicaoX() && y == robo.getPosicaoY()) {
+						ambiente.append(" & ");
+					} else {
+						ambiente.append(this.ambiente[x][y].getTipoLocal());
+					}
+				} else if (isParede(x, y)) {
+					ambiente.append(this.ambiente[x][y].getTipoLocal());
+				} else {
+					ambiente.append(this.ambiente[x][y].getTipoLocal());
+				}
+			}
+			ambiente.append("\n");
+		}
+		return ambiente.toString();
+	}
+	
+	public boolean isEspacoLivre(int x, int y) {
+		return this.ambiente[x][y] != null && this.ambiente[x][y].getTipoLocal() == TipoLocal.livre;
+	}
+	
 	private void montaAmbiente(int totalDeObstaculos) {
 		
 		do {
@@ -67,30 +94,4 @@ public class Ambiente {
 				&& this.ambiente[x][y].getTipoLocal() == TipoLocal.obstaculo;
 	}
 
-	public boolean isEspacoLivre(int x, int y) {
-		return this.ambiente[x][y] != null && this.ambiente[x][y].getTipoLocal() == TipoLocal.livre;
-	}
-
-	public String getEstadoAtualAmbiente(Robo robo) {
-		
-		StringBuilder ambiente = new StringBuilder();
-		
-		for (int x = 0; x < this.altura; x++) {
-			for (int y = 0; y < this.largura; y++) {
-				if (isEspacoLivre(x, y)) {
-					if (x == robo.getPosicaoX() && y == robo.getPosicaoY()) {
-						ambiente.append(" & ");
-					} else {
-						ambiente.append(this.ambiente[x][y].getTipoLocal());
-					}
-				} else if (isParede(x, y)) {
-					ambiente.append(this.ambiente[x][y].getTipoLocal());
-				} else {
-					ambiente.append(this.ambiente[x][y].getTipoLocal());
-				}
-			}
-			ambiente.append("\n");
-		}
-		return ambiente.toString();
-	}
 }
